@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 
+require('dotenv').config();
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Embark Gatsby Typescript`,
@@ -9,25 +11,57 @@ const config: GatsbyConfig = {
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
-  plugins: [{
-    resolve: 'gatsby-source-contentful',
-    options: {
-      "accessToken": "71va531ineck",
-      "spaceId": ""
-    }
-  }, "gatsby-plugin-emotion", "gatsby-plugin-image", "gatsby-plugin-react-helmet", "gatsby-plugin-sitemap", {
-    resolve: 'gatsby-plugin-manifest',
-    options: {
-      "icon": "src/images/icon.png"
-    }
-  }, "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "images",
-      "path": "./src/images/"
+  plugins: [
+    "gatsby-plugin-emotion",
+    {
+      resolve: `gatsby-plugin-graphql-codegen`,
+      options: {
+        fileName: `types/graphql-types.d.ts`,
+      },
     },
-    __key: "images"
-  }]
+    "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        "icon": "src/images/icon.png"
+      }
+    },
+    "gatsby-plugin-sharp",
+    {
+      resolve: 'gatsby-source-contentful',
+      options: {
+        "accessToken": process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN,
+        "spaceId": process.env.CONTENTFUL_SPACE_ID
+      }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        "name": "images",
+        "path": "./src/images/"
+      },
+      __key: "images"
+    },
+    // {
+    //   resolve: `gatsby-plugin-material-ui`,
+    //   options: {
+    //     stylesProvider: {
+    //       injectFirst: true,
+    //     },
+    //   },
+    // },
+    // "gatsby-plugin-material-ui",
+    {
+      resolve: 'gatsby-theme-material-ui',
+      // options: {
+      //   webFontsConfig: null
+      // }
+    },
+    "embark-mui-theme",
+    "gatsby-transformer-sharp",
+  ]
 };
 
 export default config;

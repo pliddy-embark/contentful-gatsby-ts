@@ -10,7 +10,7 @@ import { ContentfulPage, ContentfulSection } from '../../types/graphql-types'; /
 // import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
 import HeroSection from '../sections/HeroSection/HeroSection';
 import RichTextSection from '../sections/RichTextSection/RichTextSection';
-// import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
+import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
 
 // interface SelectedComponents {
 //   [key: string]: Component;
@@ -65,6 +65,10 @@ const Page = ({ data: { contentfulPage } }: Props) => {
 
         if (section?.type === 'RichTextSection') {
           return (<RichTextSection key={section?.slug} section={section as ContentfulSection} />)
+        }
+
+        if (section?.type === 'MaterialDemoSection') {
+          return (<MaterialDemoSection key={section?.slug} section={section as ContentfulSection} />)
         }
 
         return (<SampleSection key={section?.slug} section={section as ContentfulSection} />)

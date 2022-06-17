@@ -1,5 +1,3 @@
-// src/pages/{contentfulPage.url}.js
-
 import React, { Component, ReactElement } from 'react';
 import { graphql } from 'gatsby';
 
@@ -11,7 +9,7 @@ import { ContentfulPage, ContentfulSection } from '../../types/graphql-types'; /
 // import CardSectionPrimary from '../sections/CardSection/CardSectionPrimary';
 // import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
 import HeroSection from '../sections/HeroSection/HeroSection';
-// import RichTextSection from '../sections/RichTextSection/RichTextSection';
+import RichTextSection from '../sections/RichTextSection/RichTextSection';
 // import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
 
 // interface SelectedComponents {
@@ -19,11 +17,11 @@ import HeroSection from '../sections/HeroSection/HeroSection';
 // }
 
 // const sectionComponents = {
-//   CardSectionSecondary,
-//   CardSectionPrimary,
+//   // CardSectionSecondary,
+//   // CardSectionPrimary,
 //   HeroSection,
 //   RichTextSection,
-//   MaterialDemoSection
+//   // MaterialDemoSection
 // };
 
 interface Props {
@@ -60,12 +58,15 @@ const Page = ({ data: { contentfulPage } }: Props) => {
         </Container>
       )}
 
-      {/* <Container><pre>{JSON.stringify(contentfulPage, null, 2)}</pre></Container> */}
-
       {sections && sections.map((section) => {
         if (section?.type === 'HeroSection') {
           return (<HeroSection key={section?.slug} section={section as ContentfulSection} />)
         }
+
+        if (section?.type === 'RichTextSection') {
+          return (<RichTextSection key={section?.slug} section={section as ContentfulSection} />)
+        }
+
         return (<SampleSection key={section?.slug} section={section as ContentfulSection} />)
         }
       )}

@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 
 import { ContentfulPage, ContentfulSection } from '../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
-// import CardSectionPrimary from '../sections/CardSection/CardSectionPrimary';
-// import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
+import CardSectionPrimary from '../sections/CardSection/CardSectionPrimary';
+import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
 import HeroSection from '../sections/HeroSection/HeroSection';
 import RichTextSection from '../sections/RichTextSection/RichTextSection';
 import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
@@ -69,6 +69,14 @@ const Page = ({ data: { contentfulPage } }: Props) => {
 
         if (section?.type === 'MaterialDemoSection') {
           return (<MaterialDemoSection key={section?.slug} section={section as ContentfulSection} />)
+        }
+
+        if (section?.type === 'CardSectionPrimary') {
+          return (<CardSectionPrimary key={section?.slug} section={section as ContentfulSection} />)
+        }
+
+        if (section?.type === 'CardSectionSecondary') {
+          return (<CardSectionSecondary key={section?.slug} section={section as ContentfulSection} />)
         }
 
         return (<SampleSection key={section?.slug} section={section as ContentfulSection} />)

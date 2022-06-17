@@ -6,6 +6,8 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import RenderedHtml from '../../components/RenderedHtml/RenderedHtml';
+
 import { Link } from 'gatsby';
 
 import { ContentfulSection, ContentfulComponent } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
@@ -27,6 +29,7 @@ const HeroSection = ({ section }: HeroSectionProps) => {
     heading,
     image,
     links,
+    richText,
     subheading
   } = heroComponent;
 
@@ -68,8 +71,10 @@ const HeroSection = ({ section }: HeroSectionProps) => {
                 </Typography>
               )}
 
-              {/* Handling links/buttons can be refactored, but works for demo purposes */}
+              {/* The richText is displayed if one is in the content block */}
+              {richText && <RenderedHtml richText={richText} variant="subtitle1" />}
 
+              {/* Handling links/buttons can be refactored, but works for demo purposes */}
               {links && (
                 <Stack direction={{ xs: 'column', lg: 'row' }} spacing={2} sx={{ pt: 4 }}>
                   {links && (
@@ -107,7 +112,6 @@ const HeroSection = ({ section }: HeroSectionProps) => {
           </Grid>
         </Grid>
       </Container>
-      {/* <pre>{JSON.stringify(section, null, 2)}</pre> */}
     </Container>
   );
 };

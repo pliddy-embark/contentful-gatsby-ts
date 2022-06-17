@@ -2,6 +2,7 @@
 
 # gatsby
 .cache/
+/public/page-data/**/*.*
 
 # JetBrains
 .idea/

@@ -1,9 +1,12 @@
 import React from 'react';
 
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+
+import { Link } from 'gatsby';
 
 import { ContentfulSection, ContentfulComponent } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
@@ -16,15 +19,14 @@ interface HeroSectionProps {
 const HeroSection = ({ section }: HeroSectionProps) => {
   console.log({ section });
 
-  const {
-    components
-  } = section;
+  const { components } = section;
 
   const heroComponent = components?.[0] as ContentfulComponent;
 
   const {
     heading,
     image,
+    links,
     subheading
   } = heroComponent;
 
@@ -64,6 +66,42 @@ const HeroSection = ({ section }: HeroSectionProps) => {
                 <Typography variant="h2">
                   {subheading}
                 </Typography>
+              )}
+
+              {/* Handling links/buttons can be refactored, but works for demo purposes */}
+
+              {links && (
+                <Stack direction={{ xs: 'column', lg: 'row' }} spacing={2} sx={{ pt: 4 }}>
+                  {links && (
+                    links[0] && links[0].ref && (
+                      <Button
+                        color="secondary"
+                        component={Link}
+                        // data-event={`${componentId}.${slugify(links[0].label)}`}
+                        // id={`${componentId}.${slugify(links[0].label)}`}
+                        size="large"
+                        to={`/${links[0].ref.slug}`}
+                        variant="contained"
+                      >
+                        {links[0].label}
+                      </Button>
+                    )
+                  )}
+                  {links && (
+                    links[1] && links[1].ref && (
+                      <Button
+                        component={Link}
+                        // data-event={`${componentId}.${slugify(links[1].label)}`}
+                        // id={`${componentId}.${slugify(links[1].label)}`}
+                        size="large"
+                        to={`/${links[1].ref.slug}`}
+                        variant="contained"
+                      >
+                        {links[1].label}
+                      </Button>
+                    )
+                  )}
+                </Stack>
               )}
             </Stack>
           </Grid>

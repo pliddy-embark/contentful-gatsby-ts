@@ -10,7 +10,7 @@ import { ContentfulPage, ContentfulSection } from '../../types/graphql-types'; /
 
 // import CardSectionPrimary from '../sections/CardSection/CardSectionPrimary';
 // import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
-// import HeroSection from '../sections/HeroSection/HeroSection';
+import HeroSection from '../sections/HeroSection/HeroSection';
 // import RichTextSection from '../sections/RichTextSection/RichTextSection';
 // import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
 
@@ -31,6 +31,13 @@ interface Props {
     contentfulPage: ContentfulPage
   }
 }
+
+const SampleSection = ({ section }: { section: ContentfulSection }) => (
+  <Container key={section.slug}>
+    <Typography variant="h2" gutterBottom>{section.title}</Typography>
+    <pre>{JSON.stringify(section, null, 2)}</pre>
+  </Container>
+);
 
 const Page = ({ data: { contentfulPage } }: Props) => {
   const {
@@ -55,12 +62,13 @@ const Page = ({ data: { contentfulPage } }: Props) => {
 
       {/* <Container><pre>{JSON.stringify(contentfulPage, null, 2)}</pre></Container> */}
 
-      {sections && sections.map(section => (
-        <Container key={section.slug}>
-          <Typography variant="h2" gutterBottom>{section.title}</Typography>
-          <pre>{JSON.stringify(section, null, 2)}</pre>
-        </Container>
-      ))}
+      {sections && sections.map((section) => {
+        if (section?.type === 'HeroSection') {
+          return (<HeroSection key={section?.slug} section={section as ContentfulSection} />)
+        }
+        return (<SampleSection key={section?.slug} section={section as ContentfulSection} />)
+        }
+      )}
     </main>
   );
 };

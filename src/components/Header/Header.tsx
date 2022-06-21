@@ -30,9 +30,7 @@ const Header = ({ allPages }: HeaderProps) => {
   const { edges } = allPages ?? [];
   const nodes = edges?.map(edge => edge.node);
 
-  console.log({ nodes });
-
-  const componentId = 'header';
+  // const componentId = 'header';
 
   return (
     <>
@@ -40,7 +38,7 @@ const Header = ({ allPages }: HeaderProps) => {
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             {/* Clickable Embark logo */}
-            <Logo parentId={componentId} url="/" />
+            <Logo url="/" />
             {/* Responsive menu with icon, hidden on md and above */}
             <MobileNav navData={nodes} />
             {/* links in menu bar visible on md and above */}

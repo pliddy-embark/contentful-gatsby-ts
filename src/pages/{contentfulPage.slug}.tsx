@@ -52,7 +52,7 @@ const Page = ({ data: { contentfulPage, allContentfulPage } }: Props) => {
     sections
   } = contentfulPage ?? {};
 
-  console.log({ allContentfulPage });
+  // console.log({ allContentfulPage });
   // console.log({ sections });
 
   // return <pre>{JSON.stringify(data, null, 2)}</pre>;

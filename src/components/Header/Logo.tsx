@@ -9,23 +9,23 @@ import LogoSvg from './LogoSvg';
 
 interface ComponentProps {
   color?: string,
-  parentId: string,
+  // parentId: string,
   url?: string
 }
 
 // NOTE: fixed sizes on logo are keeping it from re-sizing,
 //       so AppBar doesn't re-size when it becomes responsive
 
-const Logo = ({ color, parentId, url }: ComponentProps) => (
+const Logo = ({ color, url }: ComponentProps) => (
   <GatsbyLink
-    data-event={`${parentId}.logo`}
-    id={`${parentId}.logo`}
+    // data-event={`${parentId}.logo`}
+    // id={`${parentId}.logo`}
     to={url || ''}
   >
     <Box>
       <LogoSvg
         color={color}
-        data-event={`${parentId}.logo`}
+        // data-event={`${parentId}.logo`}
         height="2.625rem"
         width="10.75rem"
       />

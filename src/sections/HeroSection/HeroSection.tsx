@@ -23,7 +23,7 @@ const HeroSection = ({ section }: HeroSectionProps) => {
 
   const { components } = section;
 
-  const heroComponent = components?.[0] as ContentfulComponent;
+  const heroComponent = components?.[0];
 
   const {
     heading,
@@ -31,7 +31,7 @@ const HeroSection = ({ section }: HeroSectionProps) => {
     links,
     richText,
     subheading
-  } = heroComponent;
+  } = heroComponent ?? {};
 
   console.log({ heroComponent });
 

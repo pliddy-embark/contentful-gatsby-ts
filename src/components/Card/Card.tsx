@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import { Link as GatsbyLink } from 'gatsby';
 
 import { CardActionArea, CardActions } from '@mui/material/';
@@ -16,18 +16,18 @@ import NavLink from '../NavLink/NavLink';
 import RenderedHtml from '../../components/RenderedHtml/RenderedHtml';
 
 // import { ComponentData } from 'lib/interfaces';
-import { ContentfulComponent } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+import { Maybe, ContentfulComponent } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
 interface ClickableWrapperProps {
-  parentId: string,
+  // parentId: string,
   linkUrl: string,
   children: ReactElement | ReactElement[]
 }
-const ClickableWrapper = ({ parentId, linkUrl, children }: ClickableWrapperProps) => (
+const ClickableWrapper = ({ linkUrl, children }: ClickableWrapperProps) => (
   <CardActionArea
     component={GatsbyLink}
-    data-event={`${parentId}-card`}
-    id={`${parentId}-card`}
+    // data-event={`${parentId}-card`}
+    // id={`${parentId}-card`}
     to={`/${linkUrl}`}
   >
     {children}
@@ -44,17 +44,17 @@ const StaticWrapper = ({ children }: StaticWrapperProps) => (
 
 interface CardWrapperProps {
   children: ReactElement | ReactElement[],
-  linkUrl?: string,
-  linkLabel?: string,
-  parentId: string
+  linkUrl?: Maybe<string> | undefined,
+  linkLabel?: Maybe<string> | undefined,
+  // parentId: string
 }
 
 const CardWrapper = ({
-  parentId, linkUrl, linkLabel, children
+  linkUrl, linkLabel, children
 }: CardWrapperProps) => {
   if (linkUrl && !linkLabel) {
     return (
-      <ClickableWrapper linkUrl={linkUrl} parentId={parentId}>
+      <ClickableWrapper linkUrl={linkUrl}>
         {children}
       </ClickableWrapper>
     );
@@ -95,33 +95,28 @@ const Component = ({
   } = component;
 
   // optional chaining syntax with ?? (nullish coalescing)
-  const { asset } = component?.image ?? {};
-  const { altText } = image ?? {};
+  const { asset, altText } = image ?? {};
+  const { url: assetUrl } = asset ?? {};
+
   const { label: linkLabel } = links?.[0] ?? {};
   const { ref } = links?.[0] ?? {};
   const { slug: linkUrl } = ref ?? {};
 
-  const componentId = `${parentId}.${slug}-${index}`;
+  // const componentId = `${parentId}.${slug}-${index}`;
 
   return (
-    <Card component="section" className={`${layout} ${type}`} id={`${componentId}`}>
+    <Card component="section" className={`${layout} ${type}`}>
       {/* Card Wrapper is a CardActionArea for clickable cards or a Box for static cards */}
-      <CardWrapper linkUrl={linkUrl} linkLabel={linkLabel} parentId={componentId}>
-        {/* CardMedia displays the image asset from the content block */}
+      <CardWrapper linkUrl={linkUrl} linkLabel={linkLabel}>
         <CardMedia
           component="img"
-          src={asset && asset.url}
-          alt={altText && altText}
+          image={assetUrl || undefined}
+          alt={altText || undefined}
           height={800}
           width={600}
         />
-
-        {/* CardContent displays the text items from the content block */}
         <CardContent>
-          {/* The Material Stack component manages vertical spacing for text elements in CardContent */}
-          <Stack direction="row" spacing={1} mb={2} mt={1}>
-
-            {/* The Chip displays the label from the content block and sets the color based on the specified section type */}
+        <Stack direction="row" spacing={1} mb={2} mt={1}>
             {label && (
               <Chip label={label} color={type === 'primary' ? 'secondary' : 'primary'} />
             )}
@@ -141,8 +136,8 @@ const Component = ({
           {heading && linkUrl && linkLabel && (
             <Link
               component={GatsbyLink}
-              data-event={`${componentId}-heading`}
-              id={`${componentId}-heading`}
+              // data-event={`${componentId}-heading`}
+              // id={`${componentId}-heading`}
               to={`/${linkUrl}`}
               variant="h3"
             >
@@ -170,7 +165,7 @@ const Component = ({
           {/* A link is displayed at the bottom of the card if one is present in the content block's linksCollection */}
           {linkUrl && linkLabel && (
             <CardActions>
-              <NavLink url={`/${linkUrl}`} label={linkLabel} parentId={componentId} />
+              <NavLink url={`/${linkUrl}`} label={linkLabel} />
             </CardActions>
           )}
         </CardContent>
@@ -180,6 +175,3 @@ const Component = ({
 };
 
 export default Component;
-
-
-

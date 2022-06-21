@@ -8,13 +8,13 @@ import slugify from '../../lib/strings';
 interface NavLinkProps {
   url: string,
   label: string,
-  parentId: string
+  // parentId: string
 }
-const NavLink = ({ url, label, parentId }: NavLinkProps) => (
+const NavLink = ({ url, label }: NavLinkProps) => (
   <Link
     component={GatsbyLink}
-    data-event={`${parentId}.${slugify(label)}-link`}
-    id={`${parentId}.${slugify(label)}-link`}
+    // data-event={`${parentId}.${slugify(label)}-link`}
+    // id={`${parentId}.${slugify(label)}-link`}
     sx={{ display: 'inline-flex' }}
     to={url}
   >

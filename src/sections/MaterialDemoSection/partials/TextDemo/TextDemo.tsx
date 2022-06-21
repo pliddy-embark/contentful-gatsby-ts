@@ -2,16 +2,15 @@ import React from 'react';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
-import Typography from '@mui/material/Typography';
-import { Variant } from '@mui/material/styles/createTypography';
+import Typography, { TypographyTypeMap } from '@mui/material/Typography';
 
 import RenderedHtml from '../../../../components/RenderedHtml/RenderedHtml';
 
-import { ContentfulSection, ContentfulComponent, ContentfulNameValuePair } from '../../../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+import { Maybe, ContentfulSection, ContentfulNameValuePair } from '../../../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
-interface VariantMap {
-  heading: string,
-  body: string
+type VariantMap = {
+  heading: TypographyTypeMap["props"]["variant"];
+  body: TypographyTypeMap["props"]["variant"];
 }
 
 const variants: Array<VariantMap> = [
@@ -21,12 +20,17 @@ const variants: Array<VariantMap> = [
   { heading: 'h3', body: 'body2' },
   { heading: 'h4', body: 'caption' },
   { heading: 'h5', body: 'subtitle1' },
-  { heading: 'h6', body: 'subtitle2' }
+  { heading: 'h6', body: 'subtitle2' },
 ];
 
-const getNamedString = (namedStrings: ContentfulNameValuePair[], name: string):string => {
+type GetNamedStringProps = {
+  namedStrings: Maybe<ContentfulNameValuePair>[];
+  stringName: string
+};
+
+const getNamedString = ({namedStrings, stringName}: GetNamedStringProps):string => {
   if (namedStrings) {
-    const namedString = namedStrings.find(item => item.name === name);
+    const namedString = namedStrings.find(item => item?.name === stringName);
     if (namedString && namedString.value) return namedString.value;
   }
   return '';
@@ -56,7 +60,7 @@ const TextDemo = ({
           richText
         } = component ?? {};
 
-        console.log({ namedStrings })
+        // console.log({ namedStrings })
 
         if (index === collection.length - 1) {
           return (
@@ -69,14 +73,14 @@ const TextDemo = ({
               {namedStrings && (
                 <Box sx={{ '& > *': { marginRight: 1 } }}>
                   <Typography variant="button" gutterBottom sx={{ mr: 1, display: 'inline-block' }}>
-                    {getNamedString(namedStrings, 'buttonText')}
+                    {getNamedString({ namedStrings, stringName: 'buttonText' })}
                   </Typography>
                   <Typography variant="overline" gutterBottom sx={{ mr: 1, display: 'inline-block' }}>
-                    {getNamedString(namedStrings, 'overlineText')}
+                    {getNamedString({ namedStrings, stringName: 'overlineText' })}
                   </Typography>
-                  <Chip label={getNamedString(namedStrings, 'chipFilled')} color="primary" />
-                  <Chip label={getNamedString(namedStrings, 'chipSecondary')} color="secondary" />
-                  <Chip label={getNamedString(namedStrings, 'chipOutlined')} variant="outlined" />
+                  <Chip label={getNamedString({ namedStrings, stringName: 'chipFilled' })} color="primary" />
+                  <Chip label={getNamedString({ namedStrings, stringName: 'chipSecondary' })} color="secondary" />
+                  <Chip label={getNamedString({ namedStrings, stringName: 'chipOutlined' })} variant="outlined" />
                 </Box>
               )}
             </Box>
@@ -86,11 +90,11 @@ const TextDemo = ({
         return (
           <Box key={id}>
             {heading && (
-              <Typography variant={variants[index].heading as Variant} gutterBottom>
+              <Typography variant={variants[index].heading} gutterBottom>
                 {heading}
               </Typography>
             )}
-            {richText && <RenderedHtml richText={richText} variant={variants[index].body as Variant} />}
+            {richText && <RenderedHtml richText={richText} variant={variants[index].body} />}
           </Box>
         );
       })}

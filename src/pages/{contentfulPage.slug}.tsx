@@ -60,26 +60,26 @@ const Page = ({ data: { contentfulPage } }: Props) => {
 
       {sections && sections.map((section) => {
         if (section?.type === 'HeroSection') {
-          return (<HeroSection key={section?.slug} section={section as ContentfulSection} />)
+          return (<HeroSection key={section?.slug} section={section} />)
         }
 
         if (section?.type === 'RichTextSection') {
-          return (<RichTextSection key={section?.slug} section={section as ContentfulSection} />)
+          return (<RichTextSection key={section?.slug} section={section} />)
         }
 
         if (section?.type === 'MaterialDemoSection') {
-          return (<MaterialDemoSection key={section?.slug} section={section as ContentfulSection} />)
+          return (<MaterialDemoSection key={section?.slug} section={section} />)
         }
 
         if (section?.type === 'CardSectionPrimary') {
-          return (<CardSectionPrimary key={section?.slug} section={section as ContentfulSection} />)
+          return (<CardSectionPrimary key={section?.slug} section={section} />)
         }
 
         if (section?.type === 'CardSectionSecondary') {
-          return (<CardSectionSecondary key={section?.slug} section={section as ContentfulSection} />)
+          return (<CardSectionSecondary key={section?.slug} section={section} />)
         }
 
-        return (<SampleSection key={section?.slug} section={section as ContentfulSection} />)
+        return (<SampleSection key={section?.slug} section={section} />)
         }
       )}
     </main>

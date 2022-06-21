@@ -12,7 +12,7 @@ import Form from './partials/Form';
 
 import TextDemoSection from './partials/TextDemo/TextDemo';
 
-import { ContentfulSection, ContentfulComponent } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+import { ContentfulSection } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
 interface ComponentProps {
   // parentId: string,

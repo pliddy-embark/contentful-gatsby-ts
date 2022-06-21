@@ -109,7 +109,7 @@ const Component = ({
       <CardWrapper linkUrl={linkUrl} linkLabel={linkLabel}>
         <CardMedia
           component="img"
-          image={assetUrl || undefined}
+          src={assetUrl || undefined}
           alt={altText || undefined}
           height={800}
           width={600}

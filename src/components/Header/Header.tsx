@@ -9,6 +9,8 @@ import Logo from './Logo';
 import NavBar from './NavBar';
 import MobileNav from './MobileNav';
 
+import { ContentfulPageConnection } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+
 // import { useAppContext } from 'context/AppContext';
 
 import theme from '../../gatsby-theme-material-ui-top-layout/theme';
@@ -17,13 +19,18 @@ type NavItem = {
   title: string,
   slug: string
 }
-type NavData = {
-  items: Array<NavItem>
+type HeaderProps = {
+  allPages: ContentfulPageConnection
 };
 
-const Header = () => {
+const Header = ({ allPages }: HeaderProps) => {
   // const { navData } = useAppContext();
-  const navData: NavData = { items: [] };
+  // const navData: NavData = { items: [] };
+
+  const { edges } = allPages ?? [];
+  const nodes = edges?.map(edge => edge.node);
+
+  console.log({ nodes });
 
   const componentId = 'header';
 
@@ -35,9 +42,9 @@ const Header = () => {
             {/* Clickable Embark logo */}
             <Logo parentId={componentId} url="/" />
             {/* Responsive menu with icon, hidden on md and above */}
-            <MobileNav navData={navData} />
+            <MobileNav navData={nodes} />
             {/* links in menu bar visible on md and above */}
-            <NavBar navData={navData} />
+            <NavBar navData={nodes} />
           </Toolbar>
         </Container>
       </AppBar>

@@ -8,18 +8,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import MenuItem from './MenuItem';
 
-// import { NavData } from '../../lib/interfaces';
-
-type NavItem = {
-  title: string,
-  slug: string
-}
-type NavData = {
-  items: Array<NavItem>
-};
+import { ContentfulPage } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
 interface ComponentProps {
-  navData: NavData | undefined,
+  navData: ContentfulPage[],
   // parentId: string
 }
 
@@ -71,15 +63,19 @@ const MobileNav = ({ navData }: ComponentProps) => {
         }}
         sx={{ display: { xs: 'block', md: 'none' } }}
       >
-        {navData && navData?.items?.map(({ title, slug }) => (
-          <MenuItem
-            key={slug}
-            onClick={handleCloseNavMenu}
-            // parentId={`${componentId}`}
-            slug={slug}
-            label={title}
-          />
-        ))}
+        {navData && navData?.map((node) => {
+          const { slug, title } = node ?? {};
+
+          return (
+            <MenuItem
+              key={slug}
+              onClick={handleCloseNavMenu}
+              // parentId={`${componentId}`}
+              slug={slug as string}
+              label={title as string}
+            />
+          );
+        })}
       </Menu>
     </Box>
   );

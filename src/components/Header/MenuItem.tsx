@@ -7,10 +7,12 @@ import { Link as GatsbyLink } from 'gatsby';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 
+import { Maybe } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+
 interface ComponentProps {
   // parentId: string,
-  slug: string,
-  label: string,
+  slug: Maybe<string> | undefined,
+  label: Maybe<string> | undefined,
   onClick: MouseEventHandler<HTMLElement>
 }
 

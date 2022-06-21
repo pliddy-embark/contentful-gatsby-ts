@@ -30,7 +30,11 @@ interface Props {
   }
 }
 
-const SampleSection = ({ section }: { section: ContentfulSection }) => (
+interface SampleSectionProps {
+  section: ContentfulSection
+}
+
+const SampleSection = ({ section }: SampleSectionProps) => (
   <Container key={section.slug}>
     <Typography variant="h2" gutterBottom>{section.title}</Typography>
     <pre>{JSON.stringify(section, null, 2)}</pre>
@@ -43,10 +47,10 @@ const Page = ({ data: { contentfulPage } }: Props) => {
     heading,
     subheading,
     sections
-  } = contentfulPage;
+  } = contentfulPage ?? {};
 
-  console.log({ contentfulPage });
-  console.log({ sections });
+  // console.log({ contentfulPage });
+  // console.log({ sections });
 
   // return <pre>{JSON.stringify(data, null, 2)}</pre>;
   return (
@@ -58,7 +62,7 @@ const Page = ({ data: { contentfulPage } }: Props) => {
         </Container>
       )}
 
-      {sections && sections.map((section) => {
+      {sections && sections?.map((section) => {
         if (section?.type === 'HeroSection') {
           return (<HeroSection key={section?.slug} section={section} />)
         }
@@ -79,7 +83,7 @@ const Page = ({ data: { contentfulPage } }: Props) => {
           return (<CardSectionSecondary key={section?.slug} section={section} />)
         }
 
-        return (<SampleSection key={section?.slug} section={section} />)
+        return section && (<SampleSection key={section?.slug} section={section} />)
         }
       )}
     </main>

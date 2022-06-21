@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
-import { Variant } from '@mui/material/styles/createTypography';
+// import { Variant } from '@mui/material/styles/createTypography';
 
-import Typography from '@mui/material/Typography';
+import Typography, { TypographyTypeMap } from '@mui/material/Typography';
 
 import {
   documentToReactComponents,
@@ -18,12 +18,12 @@ import { ContentfulComponentRichText } from '../../../types/graphql-types'; // e
 
 interface RenderedHtmlProps {
   richText: ContentfulComponentRichText,
-  variant?: string | undefined
+  variant?: TypographyTypeMap["props"]["variant"] | undefined
 }
 
 interface BlockProps {
   children: ReactNode | ReactNode[],
-  variant?: Variant | undefined
+  variant?: TypographyTypeMap["props"]["variant"] | undefined
 }
 
 const P = ({ children, variant }: BlockProps) => <Typography variant={variant} paragraph>{children}</Typography>;
@@ -34,7 +34,7 @@ const H4 = ({ children }: BlockProps) => <Typography variant="h4">{children}</Ty
 const H5 = ({ children }: BlockProps) => <Typography variant="h5">{children}</Typography>;
 const H6 = ({ children }: BlockProps) => <Typography variant="h6">{children}</Typography>;
 
-const options = (variant: Variant): Options => ({
+const options = (variant: TypographyTypeMap["props"]["variant"]): Options => ({
   renderMark: {
     [MARKS.BOLD]: text => <strong>{text}</strong>,
   },
@@ -50,14 +50,15 @@ const options = (variant: Variant): Options => ({
 });
 
 export const RenderedHtml = ({
-  richText: {
-    raw
-  },
+  richText,
   variant = 'body2'
-}: RenderedHtmlProps) => (
+}: RenderedHtmlProps) => {
+  const { raw } = richText ?? {};
+
+  return (
   <>
-    {documentToReactComponents(JSON.parse(raw), options(variant as Variant))}
+    {documentToReactComponents(JSON.parse(raw as string), options(variant))}
   </>
-);
+)};
 
 export default RenderedHtml;

@@ -19,7 +19,7 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ section }: HeroSectionProps) => {
-  console.log({ section });
+  // console.log({ section });
 
   const { components } = section;
 
@@ -33,7 +33,7 @@ const HeroSection = ({ section }: HeroSectionProps) => {
     subheading
   } = heroComponent ?? {};
 
-  console.log({ heroComponent });
+  // console.log({ heroComponent });
 
   const { asset } = image ?? {};
   const { url } = asset ?? {};

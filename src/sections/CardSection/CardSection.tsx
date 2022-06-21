@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import Card from '../../components/Card/Card';
 
-import { ContentfulPage, ContentfulSection } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+import { ContentfulComponent, ContentfulPage, ContentfulSection } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
 const getColumnWidth = ({ index, numCards }: { index: number, numCards: number }) => {
   const cardNum = index + 1;
@@ -40,7 +40,7 @@ const CardsSection = ({ section, type }: CardsSectionProps) => {
     heading,
     subheading,
     components
-  } = section;
+  } = section ?? {};
 
   // const componentId = `${parentId}.${contentData.slug}`;
 
@@ -50,18 +50,18 @@ const CardsSection = ({ section, type }: CardsSectionProps) => {
       {subheading && (<Typography variant="body1" align="center" gutterBottom>{subheading}</Typography>)}
       {components && (
         <Grid container spacing={3}>
-          {components.map((cardData, index, cardArray) => {
+          {components?.map((component, index, cardArray) => {
             const columnWidth = getColumnWidth({ index, numCards: cardArray.length });
 
             return (
               // key needs to use random because cards are duplicated for demo
-              <Grid item key={`${cardData?.id}-${Math.random()}`} md={columnWidth} sx={{ display: 'flex' }}>
+              <Grid item key={`${component?.id}-${Math.random()}`} md={columnWidth} sx={{ display: 'flex' }}>
                 <Card
                   index={index}
                   // parentId={componentId}
                   layout={columnWidth === 12 ? 'single' : undefined}
                   type={type}
-                  component={cardData}
+                  component={component as ContentfulComponent}
                 />
               </Grid>
             );

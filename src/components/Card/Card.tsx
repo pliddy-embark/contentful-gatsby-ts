@@ -68,7 +68,7 @@ const CardWrapper = ({
 };
 
 interface ComponentProps {
-  parentId: string,
+  // parentId: string,
   index: number,
   type?: string,
   layout?: string,
@@ -76,13 +76,12 @@ interface ComponentProps {
 }
 
 const Component = ({
-  parentId,
+  // parentId,
   type = 'primary',
-  index = 0,
+  // index = 0,
   layout,
   component
 }: ComponentProps) => {
-  console.log({ component });
   const {
     slug,
     label,

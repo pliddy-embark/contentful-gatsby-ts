@@ -87,14 +87,17 @@ const TextDemo = ({
           );
         }
 
+        const headingVariant = variants[index].heading;
+        const bodyVariant = variants[index].body;
+
         return (
           <Box key={id}>
             {heading && (
-              <Typography variant={variants[index].heading} gutterBottom>
+              <Typography variant={headingVariant} gutterBottom>
                 {heading}
               </Typography>
             )}
-            {richText && <RenderedHtml richText={richText} variant={variants[index].body} />}
+            {richText && <RenderedHtml richText={richText} variant={bodyVariant} />}
           </Box>
         );
       })}

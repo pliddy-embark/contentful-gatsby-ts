@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { createSvgIcon } from '@mui/material/utils';
 
 // uses Material's createSVGIcon; is there a better way?

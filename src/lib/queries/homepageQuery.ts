@@ -1,33 +1,8 @@
-import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql } from 'gatsby';
 
-import { ContentfulPageConnection, ContentfulPage, ContentfulSection } from '../../types/graphql-types'; // eslint-disable-line import/no-unresolved
-
-import Header from '../components/Header/Header';
-import Layout from '../components/Layout';
-
-import homepageQuery from '../lib/queries/homepageQuery.ts';
-
-interface PageProps {
-  data: {
-    contentfulPage: ContentfulPage,
-    allContentfulPage: ContentfulPageConnection
-  }
-}
-
-const IndexPage = ({ data: { contentfulPage, allContentfulPage } }: PageProps) => {
-  // return <pre>{JSON.stringify(data, null, 2)}</pre>;
-  return (
-    <>
-      <Header allPages={allContentfulPage} />
-      <Layout pageData={contentfulPage} />
-    </>
-  );
-};
-
-export const data = graphql`
+const homepageQuery = graphql`
   query homepageQuery {
-    allContentfulPage(filter: {node_locale: {eq: "en-US"}, slug:{nin: ["homepage", "error"]}}) {
+    allContentfulPage(filter: {node_locale: {eq: "en-US"}, slug: {eq: "homepage"}}) {
       nodes {
         id
         title
@@ -133,5 +108,4 @@ export const data = graphql`
   }
 `;
 
-export default IndexPage;
-
+export default homepageQuery;

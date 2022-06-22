@@ -1,4 +1,4 @@
-import React, { Component, ReactElement } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 
 import Container from '@mui/material/Container';
@@ -13,18 +13,6 @@ import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
 import HeroSection from '../sections/HeroSection/HeroSection';
 import RichTextSection from '../sections/RichTextSection/RichTextSection';
 import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
-
-// interface SelectedComponents {
-//   [key: string]: Component;
-// }
-
-// const sectionComponents = {
-//   // CardSectionSecondary,
-//   // CardSectionPrimary,
-//   HeroSection,
-//   RichTextSection,
-//   // MaterialDemoSection
-// };
 
 interface Props {
   data: {
@@ -52,8 +40,7 @@ const Page = ({ data: { contentfulPage, allContentfulPage } }: Props) => {
     sections
   } = contentfulPage ?? {};
 
-  // console.log({ allContentfulPage });
-  // console.log({ sections });
+  console.log({ contentfulPage, allContentfulPage });
 
   // return <pre>{JSON.stringify(data, null, 2)}</pre>;
   return (
@@ -100,12 +87,10 @@ const Page = ({ data: { contentfulPage, allContentfulPage } }: Props) => {
 export const data = graphql`
   query pageQuery($id: String) {
     allContentfulPage(filter: {node_locale: {eq: "en-US"}, slug:{nin: ["homepage", "error"]}}) {
-      edges {
-        node {
-          id
-          title
-          slug
-        }
+      nodes {
+        id
+        title
+        slug
       }
     }
 

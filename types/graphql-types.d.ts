@@ -244,8 +244,6 @@ export type DirectoryCtimeArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Int']>;
-  host?: Maybe<Scalars['String']>;
   graphqlTypegen?: Maybe<Scalars['Boolean']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
@@ -1339,8 +1337,6 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
-  port?: InputMaybe<IntQueryOperatorInput>;
-  host?: InputMaybe<StringQueryOperatorInput>;
   graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
@@ -2601,8 +2597,6 @@ export type SiteFieldsEnum =
   | 'siteMetadata___title'
   | 'siteMetadata___description'
   | 'siteMetadata___siteUrl'
-  | 'port'
-  | 'host'
   | 'graphqlTypegen'
   | 'polyfill'
   | 'pathPrefix'
@@ -2739,8 +2733,6 @@ export type SiteGroupConnectionGroupArgs = {
 export type SiteFilterInput = {
   buildTime?: InputMaybe<DateQueryOperatorInput>;
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
-  port?: InputMaybe<IntQueryOperatorInput>;
-  host?: InputMaybe<StringQueryOperatorInput>;
   graphqlTypegen?: InputMaybe<BooleanQueryOperatorInput>;
   polyfill?: InputMaybe<BooleanQueryOperatorInput>;
   pathPrefix?: InputMaybe<StringQueryOperatorInput>;
@@ -8849,7 +8841,7 @@ export type PageQueryQueryVariables = Exact<{
 }>;
 
 
-export type PageQueryQuery = { allContentfulPage: { edges: Array<{ node: { id: string, title?: string | null, slug?: string | null } }> }, contentfulPage?: { id: string, title?: string | null, slug?: string | null, heading?: string | null, subheading?: string | null, sections?: Array<{ id: string, title?: string | null, slug?: string | null, type?: string | null, heading?: string | null, subheading?: string | null, components?: Array<{ id: string, title?: string | null, slug?: string | null, label?: string | null, date?: any | null, heading?: string | null, subheading?: string | null, richText?: { raw?: string | null } | null, image?: { id: string, altText?: string | null, caption?: string | null, asset?: { id: string, title?: string | null, description?: string | null, mimeType: string, size?: number | null, url?: string | null, width?: number | null, height?: number | null, file?: { url?: string | null, fileName?: string | null, contentType?: string | null, details?: { size?: number | null, image?: { width?: number | null, height?: number | null } | null } | null } | null } | null } | null, links?: Array<{ id: string, title?: string | null, label?: string | null, ref?: { id: string, title?: string | null, slug?: string | null } | null } | null> | null, namedStrings?: Array<{ id: string, name?: string | null, value?: string | null } | null> | null } | null> | null } | null> | null } | null };
+export type PageQueryQuery = { allContentfulPage: { nodes: Array<{ id: string, title?: string | null, slug?: string | null }> }, contentfulPage?: { id: string, title?: string | null, slug?: string | null, heading?: string | null, subheading?: string | null, sections?: Array<{ id: string, title?: string | null, slug?: string | null, type?: string | null, heading?: string | null, subheading?: string | null, components?: Array<{ id: string, title?: string | null, slug?: string | null, label?: string | null, date?: any | null, heading?: string | null, subheading?: string | null, richText?: { raw?: string | null } | null, image?: { id: string, altText?: string | null, caption?: string | null, asset?: { id: string, title?: string | null, description?: string | null, mimeType: string, size?: number | null, url?: string | null, width?: number | null, height?: number | null, file?: { url?: string | null, fileName?: string | null, contentType?: string | null, details?: { size?: number | null, image?: { width?: number | null, height?: number | null } | null } | null } | null } | null } | null, links?: Array<{ id: string, title?: string | null, label?: string | null, ref?: { id: string, title?: string | null, slug?: string | null } | null } | null> | null, namedStrings?: Array<{ id: string, name?: string | null, value?: string | null } | null> | null } | null> | null } | null> | null } | null };
 
 export type SectionsFragment = { id: string, title?: string | null, slug?: string | null, type?: string | null, heading?: string | null, subheading?: string | null, components?: Array<{ id: string, title?: string | null, slug?: string | null, label?: string | null, date?: any | null, heading?: string | null, subheading?: string | null, richText?: { raw?: string | null } | null, image?: { id: string, altText?: string | null, caption?: string | null, asset?: { id: string, title?: string | null, description?: string | null, mimeType: string, size?: number | null, url?: string | null, width?: number | null, height?: number | null, file?: { url?: string | null, fileName?: string | null, contentType?: string | null, details?: { size?: number | null, image?: { width?: number | null, height?: number | null } | null } | null } | null } | null } | null, links?: Array<{ id: string, title?: string | null, label?: string | null, ref?: { id: string, title?: string | null, slug?: string | null } | null } | null> | null, namedStrings?: Array<{ id: string, name?: string | null, value?: string | null } | null> | null } | null> | null };
 

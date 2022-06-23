@@ -1,15 +1,15 @@
-import GilroyRegularOtf from '../fonts/Gilroy-Regular.otf';
-import GilroyRegularWoff from '../fonts/Gilroy-Regular.woff';
-import GilroyRegularWoff2 from '../fonts/Gilroy-Regular.woff2';
+import GilroyRegularOtf from '../assets/fonts/Gilroy-Regular.otf';
+import GilroyRegularWoff from '../assets/fonts/Gilroy-Regular.woff';
+import GilroyRegularWoff2 from '../assets/fonts/Gilroy-Regular.woff2';
 
-import GilroyRegularItalicWoff from '../fonts/Gilroy-RegularItalic.woff';
-import GilroyRegularItalicWoff2 from '../fonts/Gilroy-RegularItalic.woff2';
+import GilroyRegularItalicWoff from '../assets/fonts/Gilroy-RegularItalic.woff';
+import GilroyRegularItalicWoff2 from '../assets/fonts/Gilroy-RegularItalic.woff2';
 
-import GilroySemiBoldWoff from '../fonts/Gilroy-SemiBold.woff';
-import GilroySemiBoldWoff2 from '../fonts/Gilroy-SemiBold.woff2';
+import GilroySemiBoldWoff from '../assets/fonts/Gilroy-SemiBold.woff';
+import GilroySemiBoldWoff2 from '../assets/fonts/Gilroy-SemiBold.woff2';
 
-import GilroySemiBoldItalicWoff from '../fonts/Gilroy-SemiBoldItalic.woff';
-import GilroySemiBoldItalicWoff2 from '../fonts/Gilroy-SemiBoldItalic.woff2';
+import GilroySemiBoldItalicWoff from '../assets/fonts/Gilroy-SemiBoldItalic.woff';
+import GilroySemiBoldItalicWoff2 from '../assets/fonts/Gilroy-SemiBoldItalic.woff2';
 
 const Gilroy = `
   font-display: swap;

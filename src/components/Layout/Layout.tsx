@@ -1,15 +1,25 @@
 import React from 'react';
+import loadable from '@loadable/component';
+
+// const Container = loadable(() => import('@mui/material/Container'));
+// const Typography = loadable(() => import('@mui/material/Typography'));
 
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
-import CardSectionPrimary from '../sections/CardSection/CardSectionPrimary';
-import CardSectionSecondary from '../sections/CardSection/CardSectionSecondary';
-import HeroSection from '../sections/HeroSection/HeroSection';
-import RichTextSection from '../sections/RichTextSection/RichTextSection';
-import MaterialDemoSection from '../sections/MaterialDemoSection/MaterialDemoSection';
+const CardSectionPrimary = loadable(() => import('../../sections/CardSection/CardSectionPrimary'));
+const CardSectionSecondary = loadable(() => import('../../sections/CardSection/CardSectionSecondary'));
+const HeroSection = loadable(() => import('../../sections/HeroSection/HeroSection'));
+const RichTextSection = loadable(() => import('../../sections/RichTextSection/RichTextSection'));
+const MaterialDemoSection = loadable(() => import('../../sections/MaterialDemoSection/MaterialDemoSection'));
 
-import { ContentfulPage, ContentfulSection } from '../../types/graphql-types'; // eslint-disable-line import/no-unresolved
+// import CardSectionPrimary from '../../sections/CardSection/CardSectionPrimary';
+// import CardSectionSecondary from '../../sections/CardSection/CardSectionSecondary';
+// import HeroSection from '../../sections/HeroSection/HeroSection';
+// import RichTextSection from '../../sections/RichTextSection/RichTextSection';
+// import MaterialDemoSection from '../../sections/MaterialDemoSection/MaterialDemoSection';
+
+import { ContentfulPage, ContentfulSection } from '../../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
 interface SampleSectionProps {
   section: ContentfulSection
@@ -43,6 +53,7 @@ const Layout = ({ pageData }: LayoutProps) => {
         </Container>
       )}
 
+      {/* TODO: make this a switch */}
       {sections && sections?.map((section) => {
         if (section?.type === 'HeroSection') {
           return (<HeroSection key={section?.slug} section={section} />)

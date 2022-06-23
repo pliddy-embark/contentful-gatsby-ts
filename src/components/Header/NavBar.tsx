@@ -10,6 +10,7 @@ interface ComponentProps {
   navData: ContentfulPage[],
   // parentId: string
 }
+
 const NavBar = ({ navData }: ComponentProps) => {
   // const componentId = `${parentId}.navbar`;
 

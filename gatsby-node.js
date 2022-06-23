@@ -6,4 +6,5 @@ exports.createPages = async ({ actions }) => {
     toPath: `/`,
     redirectInBrowser: true,
     isPermanent: true,
-  })}
+  })
+}

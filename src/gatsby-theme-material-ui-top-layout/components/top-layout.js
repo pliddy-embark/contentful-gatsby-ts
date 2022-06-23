@@ -9,7 +9,9 @@ export default function TopLayout({ children, theme }) {
 
   return (
     // <Provider store={store}>
-    <ThemeTopLayout theme={theme}>{children}</ThemeTopLayout>
+    <ThemeTopLayout theme={theme}>
+      {children}
+    </ThemeTopLayout>
     // </Provider>
   );
 }

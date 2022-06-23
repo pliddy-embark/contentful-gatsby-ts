@@ -1,12 +1,13 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { Helmet } from 'react-helmet';
 
 import { ContentfulPageConnection, ContentfulPage, ContentfulSection } from '../../types/graphql-types'; // eslint-disable-line import/no-unresolved
 
 import Header from '../components/Header/Header';
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
-import pageQuery from '../lib/queries/pageQuery';
+// import pageQuery from '../lib/queries/pageQuery';
 
 interface PageProps {
   data: {
@@ -19,6 +20,12 @@ const Page = ({ data: { contentfulPage, allContentfulPage } }: PageProps) => {
   // return <pre>{JSON.stringify(data, null, 2)}</pre>;
   return (
     <>
+      <Helmet>
+        <title>{contentfulPage.title} | embarkvet.com</title>
+        <meta name="description" content="This is a sample page to demonstrate Gatsby" />
+        {/* To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your <head> element. */}
+      </Helmet>
+
       <Header allPages={allContentfulPage} />
       <Layout pageData={contentfulPage} />
     </>

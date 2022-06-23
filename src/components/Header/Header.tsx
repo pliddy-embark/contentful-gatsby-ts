@@ -13,13 +13,8 @@ import { ContentfulPageConnection } from '../../../types/graphql-types'; // esli
 
 import theme from '../../gatsby-theme-material-ui-top-layout/theme';
 
-type NavItem = {
-  title: string,
-  slug: string
-}
-
-type HeaderProps = {
-  allPages: ContentfulPageConnection
+interface HeaderProps {
+  allPages: ContentfulPageConnection;
 };
 
 const Header = ({ allPages: { nodes: navData } }: HeaderProps) => (
